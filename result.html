@@ -1,58 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>投票結果</title>
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <style>
-    body { font-family:'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
-    header, footer { text-align:center; padding:1rem; background:#222; color:white; }
-    main { padding:1rem; max-width:600px; margin:0 auto; }
-    ol { padding-left:1.5rem; }
-    li { padding:10px; margin:6px 0; border-radius:6px; }
-    li.top1 { background-color: gold; color:black; }
-    li.top2 { background-color: silver; color:black; }
-    li.top3 { background-color: #cd7f32; color:white; }
-    .button { display:block; width:100%; margin:1rem 0; padding:10px; text-align:center; background:#222; color:white; border-radius:6px; text-decoration:none; }
-    @media(max-width:480px){
-      li { font-size:0.95rem; padding:8px; }
-      .button { font-size:0.95rem; padding:12px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投票結果 - 文化祭ダンジョン</title>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+body { font-family:'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
+header, footer { text-align:center; padding:1rem; background:#222; color:white; }
+main { padding:1rem; max-width:600px; margin:0 auto; }
+h2 { margin:1rem 0; }
+ol { padding-left:1.5rem; }
+li { margin:0.5rem 0; font-size:1.1rem; }
+.button { display:inline-block; margin-top:1rem; padding:0.8rem 1.2rem; background:#e91e63; color:white; text-decoration:none; border-radius:6px; text-align:center; font-weight:bold; }
+@media(max-width:768px){ .button { width:100%; padding:12px; font-size:1rem; } }
+</style>
 </head>
 <body>
-  <header>
-    <h1>📊 投票結果 📊</h1>
-  </header>
+<header>
+  <h1>📊 投票結果</h1>
+</header>
 
-  <main>
-    <section id="ranking-results"></section>
+<main>
+  <section id="results-section">
+    <h2>現在の投票状況</h2>
+    <div id="ranking-results">読み込み中…</div>
     <a href="index.html" class="button">トップに戻る</a>
-  </main>
+  </section>
+</main>
 
-  <footer>
-    <p>© 2025 作文化祭ダンジョン制班</p>
-  </footer>
+<footer>
+  <p>© 2025 文化祭ダンジョン製作委員会</p>
+</footer>
 
-  <script>
-    const resultsDiv=document.getElementById('ranking-results');
-    const votes=JSON.parse(localStorage.getItem('votes'))||[];
-    if(votes.length===0){
-      resultsDiv.innerHTML='<p>まだ投票がありません。</p>';
-    } else {
-      votes.sort((a,b)=>b.count-a.count);
-      const ol=document.createElement('ol');
-      votes.forEach((item,index)=>{
-        const li=document.createElement('li');
-        li.textContent=`${index+1}位：${item.name}：${item.count}票`;
-        if(index===0) li.classList.add('top1');
-        else if(index===1) li.classList.add('top2');
-        else if(index===2) li.classList.add('top3');
-        ol.appendChild(li);
-      });
-      resultsDiv.appendChild(ol);
-    }
-  </script>
+<script>
+// LocalStorageから投票データを取得
+const votes = JSON.parse(localStorage.getItem('votes')) || {};
+
+// 投票が無ければ表示
+if(Object.keys(votes).length === 0){
+  document.getElementById('ranking-results').innerHTML = '<p>まだ投票がありません。</p>';
+} else {
+  // 票数順に並べ替え
+  const entries = Object.entries(votes).sort((a,b)=>b[1]-a[1]);
+  let html = '<ol>';
+  for(const [key,count] of entries){
+    const nameMap = { magic:'魔法研究部', science:'理科部', music:'軽音部', game:'ゲーム部' };
+    html += `<li>${nameMap[key] || key}：${count}票</li>`;
+  }
+  html += '</ol>';
+  document.getElementById('ranking-results').innerHTML = html;
+}
+</script>
 </body>
 </html>
