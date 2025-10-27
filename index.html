@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>文化祭ダンジョンサイト</title>
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
-    header, footer { text-align:center; padding:1rem; background:#222; color:white; }
-    main { padding:1rem; max-width:600px; margin:0 auto; }
-    .intro h2 { font-size:1.5rem; margin-bottom:1rem; }
-    .button { display:inline-block; margin:0.5rem 0.25rem; padding:0.8rem 1.2rem; background:#222; color:white; text-decoration:none; border-radius:6px; text-align:center; }
-    #vote-message { color:red; font-weight:bold; margin-top:10px; }
-    @media(max-width:768px){
-      .intro h2 { font-size:1.3rem; }
-      .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
-      #vote-message { font-size:0.95rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文化祭ダンジョンサイト</title>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
+header, footer { text-align:center; padding:1rem; background:#222; color:white; }
+main { padding:1rem; max-width:600px; margin:0 auto; }
+h2 { margin:1rem 0; }
+.button { display:inline-block; margin:0.5rem 0.25rem; padding:0.8rem 1.2rem; background:#e91e63; color:white; text-decoration:none; border-radius:6px; text-align:center; font-weight:bold; }
+#vote-message { color:red; font-weight:bold; margin-top:10px; }
+iframe { width:100%; border-radius:10px; margin-bottom:1rem; }
+
+@media(max-width:768px){
+  h2 { font-size:1.3rem; }
+  .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
+  #vote-message { font-size:0.95rem; }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🎮 文化祭ダンジョンサイト 🎮</h1>
-  </header>
+<header>
+  <h1>🎮 文化祭ダンジョンサイト 🎮</h1>
+</header>
 
-  <main>
-    <section class="intro">
-      <h2>ようこそ、文化祭ダンジョンへ！</h2>
-      <p>展示を探検して、一番面白かったものに投票しよう！</p>
-      <a href="ranking.html" id="vote-link" class="button">投票する</a>
-      <a href="portfolio.html" class="button">展示一覧を見る</a>
-      <p id="vote-message"></p>
-    </section>
-  </main>
+<main>
+  <!-- 1️⃣ 投票セクション -->
+  <section class="vote-section" style="text-align:center; margin-bottom:2rem;">
+    <h2 style="font-size:1.8rem;">🎯 投票はこちら！ 🎯</h2>
+    <a href="ranking.html" id="vote-link" class="button" style="font-size:1.2rem; padding:15px 20px;">投票する</a>
+    <p id="vote-message"></p>
+  </section>
 
-  <footer>
-    <p>© 2025 文化祭ダンジョン製作委員会</p>
-  </footer>
+  <!-- 2️⃣ 作品紹介動画 -->
+  <section class="video-section">
+    <h2>📹 1年生作品紹介</h2>
+    <iframe src="https://www.youtube.com/embed/動画ID" title="1年生動画" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+      style="width:100%; max-width:600px; height:340px;"></iframe>
+  </section>
 
-  <script>
-    const voteLink = document.getElementById("vote-link");
-    const voteMessage = document.getElementById("vote-message");
-    const hasVoted = localStorage.getItem("hasVoted") === "true";
+  <!-- 3️⃣ その他展示作品へのリンク -->
+  <section class="portfolio-section" style="margin-top:2rem; text-align:center;">
+    <h2>🎨 その他の展示作品</h2>
+    <a href="portfolio.html" class="button">展示一覧を見る</a>
+  </section>
+</main>
 
-    if(hasVoted){
-      voteLink.addEventListener("click", e => { e.preventDefault(); alert("すでに投票済みです。"); });
-      voteLink.style.cursor = "not-allowed";
-      voteLink.style.backgroundColor = "#222";
-      voteLink.style.color = "white";
-      voteLink.style.opacity = "1";
-      voteMessage.textContent = "あなたはすでに投票済みです。投票ページには行けません。";
-    }
-  </script>
+<footer>
+  <p>© 2025 文化祭ダンジョン製作委員会</p>
+</footer>
+
+<script>
+const voteLink = document.getElementById("vote-link");
+const voteMessage = document.getElementById("vote-message");
+const hasVoted = localStorage.getItem("hasVoted") === "true";
+
+if(hasVoted){
+  voteLink.addEventListener("click", e => { e.preventDefault(); alert("すでに投票済みです。"); });
+  voteLink.style.cursor = "not-allowed";
+  voteLink.style.backgroundColor = "#222";
+  voteLink.style.color = "white";
+  voteLink.style.opacity = "1";
+  voteMessage.textContent = "あなたはすでに投票済みです。投票ページには行けません。";
+}
+</script>
 </body>
 </html>
