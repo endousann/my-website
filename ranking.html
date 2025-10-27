@@ -20,11 +20,17 @@
     <section class="box">
       <h2>現在の投票結果</h2>
       <ol id="ranking-list">
-        <li>1位：映像制作「時の迷宮」</li>
-        <li>2位：美術部「闇に光る絵画展」</li>
-        <li>3位：情報部「AI迷路」</li>
+        <li data-id="0">映像制作「時の迷宮」：<span class="votes">0</span>票</li>
+        <li data-id="1">美術部「闇に光る絵画展」：<span class="votes">0</span>票</li>
+        <li data-id="2">情報部「AI迷路」：<span class="votes">0</span>票</li>
       </ol>
 
+      <h3>投票する展示を選んでください：</h3>
+      <select id="vote-select">
+        <option value="0">映像制作「時の迷宮」</option>
+        <option value="1">美術部「闇に光る絵画展」</option>
+        <option value="2">情報部「AI迷路」</option>
+      </select>
       <button id="vote-btn">投票する</button>
     </section>
   </main>
@@ -34,8 +40,35 @@
   </footer>
 
   <script>
-    document.getElementById("vote-btn").addEventListener("click", () => {
+    // 初期化
+    const votes = JSON.parse(localStorage.getItem("votes")) || [0,0,0];
+    const hasVoted = localStorage.getItem("hasVoted") === "true";
+
+    const voteList = document.querySelectorAll("#ranking-list li .votes");
+    voteList.forEach((el, i) => el.textContent = votes[i]);
+
+    const voteBtn = document.getElementById("vote-btn");
+    const voteSelect = document.getElementById("vote-select");
+
+    if (hasVoted) {
+      voteBtn.disabled = true;
+      voteBtn.textContent = "すでに投票済みです";
+      voteSelect.disabled = true;
+    }
+
+    voteBtn.addEventListener("click", () => {
+      const choice = parseInt(voteSelect.value);
+      votes[choice]++;
+      localStorage.setItem("votes", JSON.stringify(votes));
+      localStorage.setItem("hasVoted", "true");
+
+      // ランキング更新
+      voteList.forEach((el, i) => el.textContent = votes[i]);
+
       alert("投票ありがとうございます！🎉");
+      voteBtn.disabled = true;
+      voteBtn.textContent = "すでに投票済みです";
+      voteSelect.disabled = true;
     });
   </script>
 </body>
