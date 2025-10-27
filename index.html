@@ -6,13 +6,27 @@
 <title>文化祭ダンジョンサイト</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
-body { font-family: 'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
-header, footer { text-align:center; padding:1rem; background:#222; color:white; }
-main { padding:1rem; max-width:600px; margin:0 auto; }
+body {
+  font-family: 'DotGothic16', monospace;
+  margin:0; padding:0;
+  background:#f9f9f9; color:#333;
+}
+header, footer {
+  text-align:center; padding:1rem; background:#222; color:white;
+}
+main {
+  padding:1rem; max-width:600px; margin:0 auto;
+}
 h2 { margin:1rem 0; }
-.button { display:inline-block; margin:0.5rem 0.25rem; padding:0.8rem 1.2rem; background:#e91e63; color:white; text-decoration:none; border-radius:6px; text-align:center; font-weight:bold; }
+.button {
+  display:inline-block; margin:0.5rem 0.25rem;
+  padding:0.8rem 1.2rem; background:#e91e63; color:white;
+  text-decoration:none; border-radius:6px; text-align:center; font-weight:bold;
+}
 #vote-message { color:red; font-weight:bold; margin-top:10px; }
-iframe { width:100%; border-radius:10px; margin-bottom:1rem; }
+iframe {
+  width:100%; border-radius:10px; margin-bottom:1rem;
+}
 
 @media(max-width:768px){
   h2 { font-size:1.3rem; }
@@ -37,7 +51,7 @@ iframe { width:100%; border-radius:10px; margin-bottom:1rem; }
   <!-- 2️⃣ 作品紹介動画 -->
   <section class="video-section">
     <h2>📹 1年生作品紹介</h2>
-    <iframe src="https://www.youtube.com/embed/動画ID" title="1年生動画" frameborder="0"
+    <iframe src="https://www.youtube.com/embed/3J0367yxfdI" title="1年生動画" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
       style="width:100%; max-width:600px; height:340px;"></iframe>
   </section>
@@ -58,8 +72,12 @@ const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
 const hasVoted = localStorage.getItem("hasVoted") === "true";
 
+// 投票済みの場合、リンクを無効化＆メッセージ表示
 if(hasVoted){
-  voteLink.addEventListener("click", e => { e.preventDefault(); alert("すでに投票済みです。"); });
+  voteLink.addEventListener("click", e => { 
+    e.preventDefault(); 
+    alert("すでに投票済みです。"); 
+  });
   voteLink.style.cursor = "not-allowed";
   voteLink.style.backgroundColor = "#222";
   voteLink.style.color = "white";
