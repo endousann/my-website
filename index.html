@@ -17,17 +17,19 @@ header, footer {
 main {
   padding:1rem; max-width:600px; margin:0 auto;
 }
-h2 { margin:1rem 0; }
+h2 { margin:1rem 0; text-align:center; }
 .button {
   display:inline-block; margin:0.5rem 0.25rem;
   padding:0.8rem 1.2rem; background:#e91e63; color:white;
   text-decoration:none; border-radius:6px; text-align:center; font-weight:bold;
 }
-#vote-message { color:red; font-weight:bold; margin-top:10px; }
+#vote-message { color:red; font-weight:bold; margin-top:10px; text-align:center; }
 iframe {
-  width:100%; border-radius:10px; margin-bottom:1rem;
+  width:100%; border-radius:10px; margin-bottom:1rem; display:block;
 }
+section { margin-bottom:2rem; }
 
+/* スマホ最適化 */
 @media(max-width:768px){
   h2 { font-size:1.3rem; }
   .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
@@ -42,7 +44,7 @@ iframe {
 
 <main>
   <!-- 1️⃣ 投票セクション -->
-  <section class="vote-section" style="text-align:center; margin-bottom:2rem;">
+  <section class="vote-section">
     <h2 style="font-size:1.8rem;">🎯 投票はこちら！ 🎯</h2>
     <a href="ranking.html" id="vote-link" class="button" style="font-size:1.2rem; padding:15px 20px;">投票する</a>
     <p id="vote-message"></p>
@@ -57,7 +59,7 @@ iframe {
   </section>
 
   <!-- 3️⃣ その他展示作品へのリンク -->
-  <section class="portfolio-section" style="margin-top:2rem; text-align:center;">
+  <section class="portfolio-section">
     <h2>🎨 その他の展示作品</h2>
     <a href="portfolio.html" class="button">展示一覧を見る</a>
   </section>
