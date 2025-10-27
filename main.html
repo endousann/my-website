@@ -1,0 +1,17 @@
+<a href="ranking.html" id="vote-link" class="button">投票する</a>
+<a href="portfolio.html" class="button">展示一覧を見る</a>
+
+<script>
+  const voteLink = document.getElementById("vote-link");
+  const hasVoted = localStorage.getItem("hasVoted") === "true";
+
+  if (hasVoted) {
+    voteLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("すでに投票済みです。投票は1回までです。");
+    });
+    // 見た目を無効っぽくする
+    voteLink.style.opacity = 0.6;
+    voteLink.style.cursor = "not-allowed";
+  }
+</script>
