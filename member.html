@@ -6,6 +6,11 @@
 <title>展示一覧</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
+/* 全要素の幅計算をpadding込みに */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'DotGothic16', monospace;
   margin:0; padding:0;
@@ -13,11 +18,17 @@ body {
 }
 
 header {
-  text-align:center; padding:1rem; background:#222; color:white;
+  text-align:center;
+  padding:1rem;
+  background:#222;
+  color:white;
 }
 
 main {
-  padding:1rem; max-width:600px; margin:0 auto; width:100%;
+  padding:1rem;
+  max-width:600px;
+  margin:0 auto;
+  width:100%;
 }
 
 .portfolio {
@@ -36,6 +47,7 @@ main {
   border-radius:8px;
   padding:10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width:100%;
 }
 
 .card a {
@@ -46,13 +58,17 @@ main {
   text-decoration:none;
   border-radius:6px;
   font-weight:bold;
+  width:100%;       /* 幅100%にしてスマホ対応 */
+  text-align:center;
+  margin-bottom:5px;
 }
 
 .card img {
-  width:100%;       /* 親要素幅に合わせる */
-  max-width:500px;  /* 最大幅 */
+  width:100%;
+  max-width:500px;
   height:auto;
   border-radius:6px;
+  display:block;
 }
 
 /* トップに戻るボタン */
@@ -65,7 +81,7 @@ main {
   border-radius:6px;
   text-align:center;
   font-weight:bold;
-  text-align:center;
+  width:100%;       /* 幅100%でスマホ対応 */
   margin-top:1rem;
 }
 
@@ -88,19 +104,26 @@ main {
 <main>
   <section class="portfolio">
     <div class="card">
-      <a>チームA</a>
+      <a href="memberA.html">チームA</a>
+      <a href="gameA.html">ゲーム名A</a>
       <img src="images/my-photo.jpg" alt="チームA作品">
     </div>
+
     <div class="card">
-      <a>チームB</a>
+      <a href="memberB.html">チームB</a>
+      <a href="gameB.html">ゲーム名B</a>
       <img src="images/my-photo.jpg" alt="チームB作品">
     </div>
+
     <div class="card">
-      <a>チームC</a>
+      <a href="memberC.html">チームC</a>
+      <a href="gameC.html">ゲーム名C</a>
       <img src="images/my-photo.jpg" alt="チームC作品">
     </div>
+
     <div class="card">
-      <a>チームD</a>
+      <a href="memberD.html">チームD</a>
+      <a href="gameD.html">ゲーム名D</a>
       <img src="images/my-photo.jpg" alt="チームD作品">
     </div>
 
