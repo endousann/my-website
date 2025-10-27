@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>展示ランキング - 文化祭ダンジョン</title>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🏆 展示ランキング</h1>
+    <nav>
+      <a href="index.html">ホーム</a>
+      <a href="ranking.html">ランキング</a>
+      <a href="portfolio.html">制作者紹介</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="box">
+      <h2>現在の投票結果</h2>
+      <ol id="ranking-list">
+        <li>1位：enndou「時の迷宮」</li>
+        <li>2位：美術部「闇に光る絵画展」</li>
+        <li>3位：情報部「AI迷路」</li>
+      </ol>
+
+      <button id="vote-btn">投票する</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 遠藤軍団</p>
+  </footer>
+
+  <script>
+    document.getElementById("vote-btn").addEventListener("click", () => {
+      alert("投票ありがとうございます！🎉");
+    });
+  </script>
+</body>
+</html>
