@@ -2,41 +2,25 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>展示ランキング - 文化祭ダンジョン</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>展示ランキング</title>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>🏆 展示ランキング</h1>
-    <nav>
-      <a href="index.html">ホーム</a>
-      <a href="ranking.html">ランキング</a>
-      <a href="portfolio.html">制作者紹介</a>
-    </nav>
+    <h1>🏆 展示ランキング 🏆</h1>
   </header>
 
   <main>
-    <section class="box">
-      <h2>現在の投票結果</h2>
+    <section class="ranking">
       <ol id="ranking-list">
-        <li>1位：enndou「時の迷宮」</li>
-        <li>2位：美術部「闇に光る絵画展」</li>
-        <li>3位：情報部「AI迷路」</li>
+        <li>魔法研究部の展示</li>
+        <li>理科部の爆発ショー</li>
+        <li>軽音部ライブ</li>
       </ol>
-
-      <button id="vote-btn">投票する</button>
+      <a href="index.html" class="button">戻る</a>
     </section>
   </main>
-
-  <footer>
-    <p>© 2025 遠藤軍団</p>
-  </footer>
-
-  <script>
-    document.getElementById("vote-btn").addEventListener("click", () => {
-      alert("投票ありがとうございます！🎉");
-    });
-  </script>
 </body>
 </html>
