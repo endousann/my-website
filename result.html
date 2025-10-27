@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>投票結果</title>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📊 投票結果 📊</h1>
+  </header>
+
+  <main>
+    <section id="ranking-results"></section>
+    <a href="index.html" class="button">トップに戻る</a>
+  </main>
+
+  <script>
+    const resultsDiv = document.getElementById('ranking-results');
+    const votes = JSON.parse(localStorage.getItem('votes')) || {};
+
+    const entries = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+
+    if (entries.length === 0) {
+      resultsDiv.innerHTML = '<p>まだ投票がありません。</p>';
+    } else {
+      let html = '<ol>';
+      for (const [key, count] of entries) {
+        const name = {
+          magic: '魔法研究部',
+          science: '理科部',
+          music: '軽音部',
+          game: 'ゲーム部'
+        }[key];
+        html += `<li>${name}：${count}票</li>`;
+      }
+      html += '</ol>';
+      resultsDiv.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
