@@ -2,9 +2,29 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>展示ランキング - 文化祭ダンジョン</title>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
+    header, footer { text-align:center; padding:1rem; background:#222; color:white; }
+    nav a { margin:0 0.5rem; color:white; text-decoration:none; }
+    main { padding:1rem; max-width:600px; margin:0 auto; }
+    .box { background:white; padding:1rem; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); margin-bottom:2rem; }
+    ol { padding-left:1.5rem; }
+    li { padding:10px; margin:6px 0; border-radius:6px; }
+    li.top1 { background-color: gold; color:black; }
+    li.top2 { background-color: silver; color:black; }
+    li.top3 { background-color: #cd7f32; color:white; }
+    select, button { width:100%; padding:10px; margin:8px 0; font-size:1rem; border-radius:6px; border:1px solid #ccc; box-sizing:border-box; }
+    button { background:#222; color:white; cursor:pointer; }
+    button:disabled { background:#888; cursor:not-allowed; }
+    @media(max-width:480px){
+      header h1, .box h2 { font-size:1.2rem; }
+      li { font-size:0.95rem; padding:8px; }
+      select, button { font-size:0.95rem; padding:10px; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -19,12 +39,10 @@
   <main>
     <section class="box">
       <h2>現在の投票結果</h2>
-      <ol id="ranking-list">
-        <li data-id="0">映像制作「時の迷宮」：<span class="votes">0</span>票</li>
-        <li data-id="1">美術部「闇に光る絵画展」：<span class="votes">0</span>票</li>
-        <li data-id="2">情報部「AI迷路」：<span class="votes">0</span>票</li>
-      </ol>
+      <ol id="ranking-list"></ol>
+    </section>
 
+    <section class="box">
       <h3>投票する展示を選んでください：</h3>
       <select id="vote-select">
         <option value="0">映像制作「時の迷宮」</option>
@@ -40,35 +58,51 @@
   </footer>
 
   <script>
-    // 初期化
-    const votes = JSON.parse(localStorage.getItem("votes")) || [0,0,0];
-    const hasVoted = localStorage.getItem("hasVoted") === "true";
-
-    const voteList = document.querySelectorAll("#ranking-list li .votes");
-    voteList.forEach((el, i) => el.textContent = votes[i]);
-
+    const voteListEl = document.getElementById("ranking-list");
     const voteBtn = document.getElementById("vote-btn");
     const voteSelect = document.getElementById("vote-select");
 
-    if (hasVoted) {
-      voteBtn.disabled = true;
-      voteBtn.textContent = "すでに投票済みです";
-      voteSelect.disabled = true;
+    const defaultVotes = [
+      { name:'映像制作「時の迷宮」', count:0 },
+      { name:'美術部「闇に光る絵画展」', count:0 },
+      { name:'情報部「AI迷路」', count:0 }
+    ];
+    const storedVotes = JSON.parse(localStorage.getItem("votes"));
+    let votes = storedVotes || defaultVotes;
+
+    const hasVoted = localStorage.getItem("hasVoted") === "true";
+
+    function renderRanking(){
+      votes.sort((a,b)=>b.count-a.count);
+      voteListEl.innerHTML='';
+      votes.forEach((item,index)=>{
+        const li=document.createElement('li');
+        li.innerHTML=`${index+1}位：${item.name}：<span>${item.count}</span>票`;
+        if(index===0) li.classList.add('top1');
+        else if(index===1) li.classList.add('top2');
+        else if(index===2) li.classList.add('top3');
+        voteListEl.appendChild(li);
+      });
     }
 
-    voteBtn.addEventListener("click", () => {
-      const choice = parseInt(voteSelect.value);
-      votes[choice]++;
-      localStorage.setItem("votes", JSON.stringify(votes));
-      localStorage.setItem("hasVoted", "true");
+    renderRanking();
 
-      // ランキング更新
-      voteList.forEach((el, i) => el.textContent = votes[i]);
+    if(hasVoted){
+      voteBtn.disabled=true;
+      voteBtn.textContent="すでに投票済みです";
+      voteSelect.disabled=true;
+    }
 
+    voteBtn.addEventListener("click",()=>{
+      const choiceIndex=parseInt(voteSelect.value);
+      votes[choiceIndex].count++;
+      localStorage.setItem("votes",JSON.stringify(votes));
+      localStorage.setItem("hasVoted","true");
+      renderRanking();
       alert("投票ありがとうございます！🎉");
-      voteBtn.disabled = true;
-      voteBtn.textContent = "すでに投票済みです";
-      voteSelect.disabled = true;
+      voteBtn.disabled=true;
+      voteBtn.textContent="すでに投票済みです";
+      voteSelect.disabled=true;
     });
   </script>
 </body>

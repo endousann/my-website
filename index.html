@@ -4,19 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>文化祭ダンジョンサイト</title>
+
+  <!-- フォント（DotGothic16） -->
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
-    header, footer { text-align:center; padding:1rem; background:#222; color:white; }
-    main { padding:1rem; max-width:600px; margin:0 auto; }
-    .intro h2 { font-size:1.5rem; margin-bottom:1rem; }
-    .button { display:inline-block; margin:0.5rem 0.25rem; padding:0.8rem 1.2rem; background:#222; color:white; text-decoration:none; border-radius:6px; text-align:center; }
-    #vote-message { color:red; font-weight:bold; margin-top:10px; }
-    @media(max-width:768px){
-      main { padding:1rem; }
-      .intro h2 { font-size:1.3rem; }
-      .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
-      #vote-message { font-size:0.95rem; }
+    body {
+      font-family: 'DotGothic16', monospace;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+    }
+
+    nav a, .button {
+      display: inline-block;
+      margin: 0.5rem 0.25rem;
+      padding: 0.8rem 1.2rem;
+      background-color: #222;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .intro h2 {
+      font-size: 1.5rem;
+    }
+
+    #vote-message {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* スマホ対応 */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.3rem;
+      }
+
+      .intro h2 {
+        font-size: 1.2rem;
+      }
+
+      .button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      #vote-message {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
@@ -29,8 +83,11 @@
     <section class="intro">
       <h2>ようこそ、文化祭ダンジョンへ！</h2>
       <p>展示を探検して、一番面白かったものに投票しよう！</p>
+      <!-- 投票ボタン -->
       <a href="ranking.html" id="vote-link" class="button">投票する</a>
       <a href="portfolio.html" class="button">展示一覧を見る</a>
+
+      <!-- 投票済みメッセージ表示用 -->
       <p id="vote-message"></p>
     </section>
   </main>
@@ -45,9 +102,15 @@
     const hasVoted = localStorage.getItem("hasVoted") === "true";
 
     if (hasVoted) {
+      // 投票済みの場合、リンクを無効化
       voteLink.style.opacity = 0.6;
       voteLink.style.cursor = "not-allowed";
-      voteLink.addEventListener("click", e => { e.preventDefault(); alert("すでに投票済みです。"); });
+      voteLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("すでに投票済みです。投票は1回までです。");
+      });
+
+      // 投票済みメッセージを表示
       voteMessage.textContent = "あなたはすでに投票済みです。投票ページには行けません。";
     }
   </script>

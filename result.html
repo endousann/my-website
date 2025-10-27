@@ -5,7 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>投票結果</title>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'DotGothic16', monospace; margin:0; padding:0; background:#f9f9f9; color:#333; }
+    header, footer { text-align:center; padding:1rem; background:#222; color:white; }
+    main { padding:1rem; max-width:600px; margin:0 auto; }
+    ol { padding-left:1.5rem; }
+    li { padding:10px; margin:6px 0; border-radius:6px; }
+    li.top1 { background-color: gold; color:black; }
+    li.top2 { background-color: silver; color:black; }
+    li.top3 { background-color: #cd7f32; color:white; }
+    .button { display:block; width:100%; margin:1rem 0; padding:10px; text-align:center; background:#222; color:white; border-radius:6px; text-decoration:none; }
+    @media(max-width:480px){
+      li { font-size:0.95rem; padding:8px; }
+      .button { font-size:0.95rem; padding:12px; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,27 +31,27 @@
     <a href="index.html" class="button">トップに戻る</a>
   </main>
 
+  <footer>
+    <p>© 2025 文化祭ダンジョン制作班</p>
+  </footer>
+
   <script>
-    const resultsDiv = document.getElementById('ranking-results');
-    const votes = JSON.parse(localStorage.getItem('votes')) || {};
-
-    const entries = Object.entries(votes).sort((a, b) => b[1] - a[1]);
-
-    if (entries.length === 0) {
-      resultsDiv.innerHTML = '<p>まだ投票がありません。</p>';
+    const resultsDiv=document.getElementById('ranking-results');
+    const votes=JSON.parse(localStorage.getItem('votes'))||[];
+    if(votes.length===0){
+      resultsDiv.innerHTML='<p>まだ投票がありません。</p>';
     } else {
-      let html = '<ol>';
-      for (const [key, count] of entries) {
-        const name = {
-          magic: '魔法研究部',
-          science: '理科部',
-          music: '軽音部',
-          game: 'ゲーム部'
-        }[key];
-        html += `<li>${name}：${count}票</li>`;
-      }
-      html += '</ol>';
-      resultsDiv.innerHTML = html;
+      votes.sort((a,b)=>b.count-a.count);
+      const ol=document.createElement('ol');
+      votes.forEach((item,index)=>{
+        const li=document.createElement('li');
+        li.textContent=`${index+1}位：${item.name}：${item.count}票`;
+        if(index===0) li.classList.add('top1');
+        else if(index===1) li.classList.add('top2');
+        else if(index===2) li.classList.add('top3');
+        ol.appendChild(li);
+      });
+      resultsDiv.appendChild(ol);
     }
   </script>
 </body>
