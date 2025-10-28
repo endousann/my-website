@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展示一覧</title>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+/* 全要素の幅計算をpadding込みに */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DotGothic16', monospace;
+  margin:0; padding:0;
+  background:#f9f9f9; color:#333;
+}
+
+header {
+  text-align:center;
+  padding:1rem;
+  background:#222;
+  color:white;
+}
+
+main {
+  padding:1rem;
+  max-width:600px;
+  margin:0 auto;
+  width:100%;
+}
+
+.portfolio {
+  display:flex;
+  flex-direction: column;
+  gap:1rem;
+}
+
+.card {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap:0.5rem;
+  text-align:center;
+  background:#fff;
+  border-radius:8px;
+  padding:10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width:100%;
+}
+
+.card a {
+  display:inline-block;
+  padding:0.5rem 1rem;
+  background:#e91e63;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+  width:100%;       /* 幅100%にしてスマホ対応 */
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.card img {
+  width:100%;
+  max-width:500px;
+  height:auto;
+  border-radius:6px;
+  display:block;
+}
+
+/* トップに戻るボタン */
+.button {
+  display:inline-block;
+  padding:0.8rem 1.2rem;
+  background:#e91e63;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  text-align:center;
+  font-weight:bold;
+  width:100%;       /* 幅100%でスマホ対応 */
+  margin-top:1rem;
+}
+
+/* スマホ対応 */
+@media(max-width:768px){
+  .card a, .button {
+    width:100%;
+    font-size:1rem;
+    padding:12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎨 チームD紹介 🎨</h1>
+</header>
+
+<main>
+  <section class="portfolio">
+    <div class="card">
+      <a href="gameA.html">ゲーム名D</a>
+      <img src="images/my-photo.jpg" alt="チームD作品">
+    </div>
+
+    <div class="card">
+      <img src="images/my-photo.jpg" alt="チーム写真">
+    </div>
+    <a href="index.html" class="button">トップに戻る</a>
+  </section>
+</main>
+
+</body>
+</html>
