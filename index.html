@@ -5,69 +5,96 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1年・ダンジョン</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
 <style>
 * { box-sizing: border-box; }
 
 body {
   font-family: 'DotGothic16', monospace;
-  margin:0; padding:0;
-  background:#f9f9f9; color:#333;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
 }
 
-header, footer {
-  text-align:center; padding:1rem; background:#222; color:white;
+header {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: white;
 }
 
+/* 🔰ロゴ画像のスタイル */
+.logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 180px; /* ← ここで大きさを調整できる */
+  height: auto;
+}
+
+/* メインエリア */
 main {
-  padding:1rem; max-width:600px; margin:0 auto; width:100%;
+  padding: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-h2 { margin:1rem 0; text-align:center; }
+h2 {
+  margin: 1rem 0;
+  text-align: center;
+}
 
 .button {
-  display:inline-block; margin:0.5rem 0.25rem;
-  padding:0.8rem 1.2rem; background:#e91e63; color:white;
-  text-decoration:none; border-radius:6px; text-align:center; font-weight:bold;
+  display: inline-block;
+  margin: 0.5rem 0.25rem;
+  padding: 0.8rem 1.2rem;
+  background: #e91e63;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
 }
 
-#vote-message { color:red; font-weight:bold; margin-top:10px; text-align:center; }
+#vote-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
 
 iframe {
-  width:100%; max-width:100%; height:340px; border-radius:10px; display:block;
+  width: 100%;
+  max-width: 100%;
+  height: 340px;
+  border-radius: 10px;
+  display: block;
 }
 
-section { margin-bottom:2rem; }
-
-/* 🍩 チュロス告知バナー */
-.churros-banner {
-  background:#ffb347;
-  color:white;
-  text-align:center;
-  padding:1em;
-  border-radius:10px;
-  font-size:1.2rem;
-  transition:background 0.3s;
-}
-.churros-banner:hover {
-  background:#ff9933;
-}
-.churros-banner a {
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+section {
+  margin-bottom: 2rem;
 }
 
 /* スマホ最適化 */
 @media(max-width:768px){
-  h2 { font-size:1.3rem; }
-  .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
-  #vote-message { font-size:0.95rem; }
+  .logo { max-width: 140px; }
+  h2 { font-size: 1.3rem; }
+  .button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  #vote-message { font-size: 0.95rem; }
 }
 </style>
 </head>
+
 <body>
 <header>
-  <h1>🎮 1年・ダンジョン 🎮</h1>
+  <!-- 🪄ロゴ画像 -->
+  <img src="images/ろごちゃん.png" alt="1年ぼうけんのしょ ロゴ" class="logo">
 </header>
 
 <main>
@@ -85,15 +112,17 @@ section { margin-bottom:2rem; }
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
 
-  <!-- 3️⃣ 展示作品へのリンク -->
+  <!-- 3️⃣ その他展示作品へのリンク -->
   <section class="portfolio-section">
     <h2>🎨 展示作品</h2>
     <a href="portfolio.html" class="button">展示一覧を見る</a>
   </section>
 
-  <!-- 🍩 4️⃣ チュロス告知エリア -->
-  <section class="churros-banner">
-    🍩 <a href="churros.html">文化祭でチュロス販売中！詳しく見る →</a>
+  <!-- 4️⃣ チュロス文化祭告知 -->
+  <section class="churros-section">
+    <h2>🍩 文化祭チュロス販売中！</h2>
+    <p style="text-align:center;">甘くておいしいチュロスを販売しています！<br>ぜひ遊びに来てください！</p>
+    <a href="churros.html" class="button">詳細を見る</a>
   </section>
 </main>
 
@@ -122,5 +151,6 @@ if(hasVoted){
   voteMessage.textContent = "あなたはすでに投票済みです。投票ページには行けません。";
 }
 </script>
+
 </body>
 </html>

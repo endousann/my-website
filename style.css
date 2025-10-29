@@ -105,3 +105,9 @@ select:disabled {
   border-radius: 10px;
   margin: 10px 0;
 }
+.logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
+  height: auto;
+}
