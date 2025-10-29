@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>展示一覧</title>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+<style>
+/* 全要素の幅計算をpadding込みに */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DotGothic16', monospace;
+  background:#f9f9f9;
+  color:#333;
+  overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+header {
+  text-align:center;
+  padding:1rem;
+  background:#222;
+  color:white;
+}
+
+main {
+  padding:0.5rem;
+  max-width:600px;
+  margin:0 auto;
+  width:100%;
+}
+
+.portfolio {
+  display:flex;
+  flex-direction: column;
+  gap:1rem;
+}
+
+.card {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap:0.5rem;
+  text-align:center;
+  background:#fff;
+  border-radius:8px;
+  padding:10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width:100%;
+}
+
+.card a {
+  display:block;
+  padding:0.5rem 1rem;
+  background:#e91e63;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+  width:100%;       /* 幅100%に固定 */
+  text-align:center;
+  margin-bottom:5px;
+}
+
+.card img {
+  width:100%;
+  max-width:100%;
+  height:auto;
+  border-radius:6px;
+  display:block;
+}
+
+/* トップに戻るボタン */
+.button {
+  display:block;
+  padding:0.8rem 1.2rem;
+  background:#e91e63;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+  text-align:center;
+  font-weight:bold;
+  width:100%;
+  margin-top:1rem;
+}
+
+/* スマホ対応 */
+@media(max-width:768px){
+  main {
+    padding:0.5rem; /* 余白を少なめに */
+  }
+  .card a, .button {
+    width:100%;
+    font-size:1rem;
+    padding:12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎨 展示一覧 🎨</h1>
+</header>
+<main>
+  <section class="portfolio">
+    <div class="scroll-container">
+      <div class="card">
+       <a href="memberA.html">チームA</a>
+       <img src="images/my-photo.jpg" alt="チームAゲームタイトル画面">
+       <a href="gameA.html"target="_blank">ゲームをプレイする</a>
+      </div>
+      <div class="card">
+       <a href="memberB.html">チームB</a>
+       <img src="images/my-photo.jpg" alt="チームBゲームタイトル画面">
+       <a href="gameB.html"target="_blank">ゲームをプレイする</a>
+      </div>
+      <div class="card">
+       <a href="memberC.html">チームC</a>
+       <img src="images/my-photo.jpg" alt="チームCゲームタイトル画面">
+       <a href="gameC.html"target="_blank">ゲームをプレイする</a>
+      </div>
+      <div class="card">
+       <a href="memberD.html">チームD</a>
+       <img src="images/my-photo.jpg" alt="チームDゲームタイトル画面">
+       <a href="gameD.html"target="_blank">ゲームをプレイする</a>
+      </div>
+    </div>  
+    <a href="index.html" class="button">トップに戻る</a>
+  </section>
+</main>
+
+</body>
+</html>
