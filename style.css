@@ -99,9 +99,3 @@ select:disabled {
   box-sizing: border-box;
 }
 
-.card img {
-  width: 80%;
-  height: auto;
-  border-radius: 10px;
-  margin: 10px 0;
-}
