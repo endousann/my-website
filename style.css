@@ -79,3 +79,11 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
+ .box{
+  display: flex;
+ }
+
+.box div{
+  width: 90%;
+  margin: 5px;
+}
