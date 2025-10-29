@@ -38,6 +38,25 @@ iframe {
 
 section { margin-bottom:2rem; }
 
+/* 🍩 チュロス告知バナー */
+.churros-banner {
+  background:#ffb347;
+  color:white;
+  text-align:center;
+  padding:1em;
+  border-radius:10px;
+  font-size:1.2rem;
+  transition:background 0.3s;
+}
+.churros-banner:hover {
+  background:#ff9933;
+}
+.churros-banner a {
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
 /* スマホ最適化 */
 @media(max-width:768px){
   h2 { font-size:1.3rem; }
@@ -66,10 +85,15 @@ section { margin-bottom:2rem; }
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </section>
 
-  <!-- 3️⃣ その他展示作品へのリンク -->
+  <!-- 3️⃣ 展示作品へのリンク -->
   <section class="portfolio-section">
     <h2>🎨 展示作品</h2>
     <a href="portfolio.html" class="button">展示一覧を見る</a>
+  </section>
+
+  <!-- 🍩 4️⃣ チュロス告知エリア -->
+  <section class="churros-banner">
+    🍩 <a href="churros.html">文化祭でチュロス販売中！詳しく見る →</a>
   </section>
 </main>
 
@@ -79,6 +103,7 @@ section { margin-bottom:2rem; }
   <p><a href="privacy.html" style="color:#fff; text-decoration:underline;">プライバシーポリシー</a></p>
   <p>製作者：1年遠藤福久・1年大友虎牙</p>
 </footer>
+
 <script>
 const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
