@@ -79,31 +79,29 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
-
 .scroll-container {
   display: flex;
-  overflow-x: auto;        /* 横スクロールを有効にする */
-  scroll-snap-type: x mandatory; /* スナップスクロール（カードごとに止まる） */
-  -webkit-overflow-scrolling: touch; /* スマホでスムーズに */
-  gap: 16px;               /* カードの間にすき間 */
-  padding: 10px;
+  overflow-x: auto;                  /* 横スクロール可能に */
+  scroll-snap-type: x mandatory;     /* 1枚ずつスナップ */
+  -webkit-overflow-scrolling: touch; /* スマホのスワイプ対応 */
+  scroll-behavior: smooth;           /* スムーズスクロール */
 }
 
 .card {
-  flex: 0 0 auto;          /* 折り返さず横に並べる */
-  width: 200px;
-  height: 150px;
-  background-color: hotpink;
-  color: white;
+  flex: 0 0 100%;                    /* 1枚を画面幅いっぱいに表示 */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  scroll-snap-align: start; /* スナップの位置 */
+  text-align: center;
+  scroll-snap-align: start;          /* スナップ位置 */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.card img {
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px 0;
 }
