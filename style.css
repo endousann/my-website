@@ -79,37 +79,3 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
-
-/* 1. コンテナの設定（「窓」） */
-.slider-container {
-  width: 100%; /* 表示したい幅に設定 */
-  overflow: hidden; /* はみ出た部分を隠すのがポイント */
-}
-
-/* 2. ラッパーの設定 */
-.slider-wrapper {
-  display: flex;
-  /* スライド4枚分の幅 */
-  width: 400%; 
-  transition: transform 0.3s ease;
-}
-
-/* 3. 個々のスライドの設定 */
-.slide {
-  flex-shrink: 0;
-  /* 400% (ラッパー) の 1/4 = 100% (コンテナ) の 1/1 */
-  width: 25%; 
-}
-
-/* .slider-container に追加 */
-.slider-container {
-  /* ...他の設定 */
-  overflow-x: scroll; /* 横スクロールを可能にする */
-  scroll-snap-type: x mandatory; /* スクロール位置を強制的にスナップさせる */
-}
-
-/* .slide に追加 */
-.slide {
-  /* ...他の設定 */
-  scroll-snap-align: start; /* スライドの開始位置にスナップさせる */
-}
