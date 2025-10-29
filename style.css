@@ -79,3 +79,22 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
+.scroll-container {
+  display: flex;
+  overflow-x: auto;                  /* 横スクロール可能に */
+  scroll-snap-type: x mandatory;     /* 1枚ずつスナップ */
+  -webkit-overflow-scrolling: touch; /* スマホのスワイプ対応 */
+  scroll-behavior: smooth;           /* スムーズスクロール */
+}
+
+.card {
+  flex: 0 0 100%;                    /* 1枚を画面幅いっぱいに表示 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  scroll-snap-align: start;          /* スナップ位置 */
+  padding: 20px;
+  box-sizing: border-box;
+} 

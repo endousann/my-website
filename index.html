@@ -14,47 +14,125 @@ body {
   background:#f9f9f9; color:#333;
 }
 
-header, footer {
-  text-align:center; padding:1rem; background:#222; color:white;
+/* 🎨 ヘッダー */
+header {
+  text-align:center;
+  padding:2rem 1rem 1rem;
+  background:#222;
+  color:white;
+}
+
+/* 🌈 ロゴ画像を大きく中央に */
+.logo {
+  display:block;
+  margin:0 auto;
+  max-width:320px;
+  height:auto;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.7));
 }
 
 main {
-  padding:1rem; max-width:600px; margin:0 auto; width:100%;
+  padding:1rem;
+  max-width:600px;
+  margin:0 auto;
+  width:100%;
 }
 
 h2 { margin:1rem 0; text-align:center; }
 
+/* 🌸 ボタン（カード風） */
 .button {
-  display:inline-block; margin:0.5rem 0.25rem;
-  padding:0.8rem 1.2rem; background:#e91e63; color:white;
-  text-decoration:none; border-radius:6px; text-align:center; font-weight:bold;
+  display:inline-block;
+  margin:0.8rem auto;
+  padding:1rem 1.5rem;
+  background:white;
+  color:#e91e63;
+  text-decoration:none;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  text-align:center;
+  font-weight:bold;
+  transition: all 0.3s ease;
+  border: 2px solid #e91e63;
+}
+.button:hover {
+  transform: translateY(-5px);
+  box-shadow:0 6px 14px rgba(0,0,0,0.2);
+  background:#e91e63;
+  color:white;
 }
 
-#vote-message { color:red; font-weight:bold; margin-top:10px; text-align:center; }
+#vote-message {
+  color:red;
+  font-weight:bold;
+  margin-top:10px;
+  text-align:center;
+}
 
 iframe {
-  width:100%; max-width:100%; height:340px; border-radius:10px; display:block;
+  width:100%;
+  max-width:100%;
+  height:340px;
+  border-radius:10px;
+  display:block;
 }
 
 section { margin-bottom:2rem; }
 
-/* 🍩 チュロス告知バナー */
-.churros-banner {
-  background:#ffb347;
-  color:white;
-  text-align:center;
-  padding:1em;
-  border-radius:10px;
-  font-size:1.2rem;
-  transition:background 0.3s;
+/* 🍩 チュロス告知カード */
+.churros-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.churros-banner:hover {
-  background:#ff9933;
+.churros-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
-.churros-banner a {
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+.churros-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.churros-card h3 {
+  margin: 0.8rem 0 0.4rem;
+  font-size: 1.4rem;
+  color: #e67e22;
+}
+.churros-card p {
+  padding: 0 1rem 1rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* ✅ フッター修正版 */
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
+  border-top: 2px solid #444;
+}
+
+footer hr {
+  border: none;
+  border-top: 1px solid #444;
+  width: 80%;
+  margin: 10px auto 20px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
 }
 
 /* スマホ最適化 */
@@ -62,19 +140,21 @@ section { margin-bottom:2rem; }
   h2 { font-size:1.3rem; }
   .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
   #vote-message { font-size:0.95rem; }
+  .logo { max-width:250px; }
 }
 </style>
 </head>
 <body>
 <header>
-  <h1>🎮 1年・ダンジョン 🎮</h1>
+  <!-- 🎨 ロゴのみ表示 -->
+  <img src="images/ろごちゃん.png" alt="1年・ダンジョン ロゴ" class="logo">
 </header>
 
 <main>
   <!-- 1️⃣ 投票セクション -->
   <section class="vote-section">
     <h2 style="font-size:1.8rem;">🎯 投票はこちら！ 🎯</h2>
-    <a href="ranking.html" id="vote-link" class="button" style="font-size:1.2rem; padding:15px 20px;">投票する</a>
+    <a href="ranking.html" id="vote-link" class="button">投票する</a>
     <p id="vote-message"></p>
   </section>
 
@@ -82,25 +162,33 @@ section { margin-bottom:2rem; }
   <section class="video-section">
     <h2>📹 1年生紹介</h2>
     <iframe src="https://www.youtube.com/embed/lcEYv0w2kG0" title="1年生動画" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
   </section>
 
-  <!-- 3️⃣ 展示作品へのリンク -->
+  <!-- 3️⃣ その他展示作品へのリンク -->
   <section class="portfolio-section">
     <h2>🎨 展示作品</h2>
     <a href="portfolio.html" class="button">展示一覧を見る</a>
   </section>
 
-  <!-- 🍩 4️⃣ チュロス告知エリア -->
-  <section class="churros-banner">
-    🍩 <a href="churros.html">文化祭でチュロス販売中！詳しく見る →</a>
+  <!-- 🍩 4️⃣ チュロス告知カード -->
+  <section class="churros-section">
+    <div class="churros-card">
+      <a href="churros.html" style="text-decoration:none; color:inherit;">
+        <img src="images/churros.jpg" alt="文化祭チュロス">
+        <h3>🍩 文化祭チュロス販売中！</h3>
+        <p>外はカリッと中はふんわり✨ 甘い香りに誘われて…<br>
+        ぜひ1年生のチュロスブースへお越しください！</p>
+      </a>
+    </div>
   </section>
 </main>
 
 <footer>
   <p>© 2025 1年サイト製作組</p>
-  <hr style="border:0; border-top:1px solid #444; width:80%; margin:10px auto;">
-  <p><a href="privacy.html" style="color:#fff; text-decoration:underline;">プライバシーポリシー</a></p>
+  <hr>
+  <p><a href="privacy.html">プライバシーポリシー</a></p>
   <p>製作者：1年遠藤福久・1年大友虎牙</p>
 </footer>
 
@@ -109,16 +197,15 @@ const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
 const hasVoted = localStorage.getItem("hasVoted") === "true";
 
-// 投票済みの場合、リンクを無効化＆メッセージ表示
 if(hasVoted){
   voteLink.addEventListener("click", e => { 
     e.preventDefault(); 
     alert("すでに投票済みです。"); 
   });
   voteLink.style.cursor = "not-allowed";
-  voteLink.style.backgroundColor = "#222";
-  voteLink.style.color = "white";
-  voteLink.style.opacity = "1";
+  voteLink.style.backgroundColor = "#ccc";
+  voteLink.style.color = "#666";
+  voteLink.style.borderColor = "#aaa";
   voteMessage.textContent = "あなたはすでに投票済みです。投票ページには行けません。";
 }
 </script>
