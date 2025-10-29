@@ -3,15 +3,16 @@
   font-family: "DotGothic16", sans-serif !important;
 }
 
+/* === 背景・基本設定 === */
 body {
   background-color: #000;
   color: #0f0;
-  font-family: 'DotGothic16', monospace;
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
+/* === ヘッダー === */
 header {
   background: linear-gradient(90deg, #030, #0a0, #030);
   padding: 20px;
@@ -19,6 +20,15 @@ header {
   border-bottom: 2px solid #0f0;
 }
 
+/* === ロゴ === */
+.logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+  height: auto;
+}
+
+/* === スクロールタイトル === */
 .scroll-title {
   display: inline-block;
   white-space: nowrap;
@@ -31,10 +41,12 @@ header {
   100% { transform: translateX(-100%); }
 }
 
+/* === メイン === */
 main {
   padding: 40px 20px;
 }
 
+/* === ボタン === */
 .button {
   display: inline-block;
   padding: 10px 20px;
@@ -51,27 +63,31 @@ main {
   color: #000;
 }
 
+/* === カード共通 === */
 .card {
   border: 1px solid #0f0;
-  margin: 20px auto;
-  padding: 20px;
-  width: 300px;
-  background: #111;
   border-radius: 8px;
+  background: #111;
+  padding: 20px;
+  margin: 20px auto;
+  width: 300px;
+  text-align: center;
 }
 
+/* === フッター === */
 footer {
   background: #020;
   padding: 10px;
   font-size: 12px;
   border-top: 1px solid #0f0;
 }
-/* 投票ボタン・セレクトの見た目を固定 */
+
+/* === 無効ボタン・セレクト固定 === */
 button:disabled {
-  background: #222 !important;  /* 背景色を固定 */
-  color: white !important;      /* 文字色を固定 */
+  background: #222 !important;
+  color: white !important;
   cursor: not-allowed;
-  opacity: 1 !important;        /* 不透明にする */
+  opacity: 1 !important;
 }
 
 select:disabled {
@@ -79,35 +95,22 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
+
+/* === 横スクロール対応 === */
 .scroll-container {
   display: flex;
-  overflow-x: auto;                  /* 横スクロール可能に */
-  scroll-snap-type: x mandatory;     /* 1枚ずつスナップ */
-  -webkit-overflow-scrolling: touch; /* スマホのスワイプ対応 */
-  scroll-behavior: smooth;           /* スムーズスクロール */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
-.card {
-  flex: 0 0 100%;                    /* 1枚を画面幅いっぱいに表示 */
+.scroll-container .card {
+  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  scroll-snap-align: start;          /* スナップ位置 */
-  padding: 20px;
+  scroll-snap-align: start;
   box-sizing: border-box;
-}
-
-.card img {
-  width: 80%;
-  height: auto;
-  border-radius: 10px;
-  margin: 10px 0;
-}
-.logo {
-  display: block;
-  margin: 0 auto;
-  max-width: 100px;
-  height: auto;
 }
