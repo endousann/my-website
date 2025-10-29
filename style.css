@@ -100,3 +100,16 @@ select:disabled {
   /* 400% (ラッパー) の 1/4 = 100% (コンテナ) の 1/1 */
   width: 25%; 
 }
+
+/* .slider-container に追加 */
+.slider-container {
+  /* ...他の設定 */
+  overflow-x: scroll; /* 横スクロールを可能にする */
+  scroll-snap-type: x mandatory; /* スクロール位置を強制的にスナップさせる */
+}
+
+/* .slide に追加 */
+.slide {
+  /* ...他の設定 */
+  scroll-snap-align: start; /* スライドの開始位置にスナップさせる */
+}
