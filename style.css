@@ -97,3 +97,15 @@ select:disabled {
 .scroll_content::-webkit-scrollbar{
   height:12px;
 }
+.title-bar {
+  background-color: #f4d28e; /* ←帯の色（例） */
+  height: 120px;             /* ←帯の高さ固定 */
+  display: flex;
+  align-items: center;       /* 画像を縦中央に */
+  justify-content: center;   /* 横中央に */
+}
+
+.title-img {
+  height: 80px;              /* ←画像の大きさだけ変更 */
+  width: auto;               /* 縦横比を保つ */
+}
