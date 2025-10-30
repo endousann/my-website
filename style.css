@@ -117,22 +117,6 @@ select:disabled {
     justify-content: center; /* 横方向の中央寄せ */
 }
 
-<<<<<<< HEAD
-.scroll_content::-webkit-scrollbar{
-  height:12px;
-}
-.title-bar {
-  background-color: #f4d28e; /* ←帯の色（例） */
-  height: 100px;             /* ←帯の高さ固定 */
-  display: flex;
-  align-items: center;       /* 画像を縦中央に */
-  justify-content: center;   /* 横中央に */
-}
-
-.title-img {
-  height: 180px;              /* ←画像の大きさだけ変更 */
-  width: auto;               /* 縦横比を保つ */
-=======
 /* 最後の要素だけは、右側の余白をなくして端に合わせる */
 .item:last-child {
     margin-right: 0;
@@ -148,7 +132,6 @@ select:disabled {
     width: 90%; /* コンテナの幅 */
     max-width: 300px; /* 最大幅を設定 */
     padding: 10px;
->>>>>>> ca575ba98a92a33657de3c81244376d704ea40d5
 }
 
 /* ------------------------------------------- */
