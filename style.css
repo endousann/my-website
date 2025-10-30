@@ -109,3 +109,21 @@ select:disabled {
   height: 80px;              /* ←画像の大きさだけ変更 */
   width: auto;               /* 縦横比を保つ */
 }
+
+.horizontal-scroll-container {
+    display: flex; /* 子要素を横並びにする */
+    overflow-x: scroll; /* 横スクロールを可能にする */
+    
+    /* スクロールスナップの設定: x軸 (横方向) に強制的に (mandatory) スナップさせる */
+    scroll-snap-type: x mandatory; 
+    
+    /* スクロールバー非表示の設定 */
+    
+    /* Firefox */
+    scrollbar-width: none; 
+    
+    /* IE/Edge (古いバージョン) */
+    -ms-overflow-style: none;
+    
+    padding: 0 20px; /* スクロール端に余白を作るためのパディング */
+}
