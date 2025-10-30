@@ -79,3 +79,7 @@ select:disabled {
   color: #333 !important;
   opacity: 1 !important;
 }
+
+.item {
+  margin-bottom: 30px; /* 下に30pxの余白 */
+}
