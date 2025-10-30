@@ -168,8 +168,3 @@ select:disabled {
 .item-2 { background-color: #4682b4; }
 .item-3 { background-color: #3cb371; }
 .item-4 { background-color: #ffd700; }
-
-.game-title {
-  text-align: center;
-  font-weight: bold;
-}
