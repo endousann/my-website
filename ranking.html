@@ -49,6 +49,7 @@ select:disabled { background:white !important; color:#333 !important; opacity:1 
       <option value="0">映像制作「時の迷宮」</option>
       <option value="1">美術部「闇に光る絵画展」</option>
       <option value="2">情報部「AI迷路」</option>
+      <option value="3">ゲーム研究会「デジタルクエスト」</option>
     </select>
     <button id="vote-btn">投票する</button>
   </section>
@@ -63,10 +64,12 @@ const voteListEl = document.getElementById("ranking-list");
 const voteBtn = document.getElementById("vote-btn");
 const voteSelect = document.getElementById("vote-select");
 
+// ✅ 初期データ（4つの展示）
 const defaultVotes = [
-  {name:'映像制作「時の迷宮」',count:0},
-  {name:'美術部「闇に光る絵画展」',count:0},
-  {name:'情報部「AI迷路」',count:0}
+  {name:'映像制作「時の迷宮」', count:0},
+  {name:'美術部「闇に光る絵画展」', count:0},
+  {name:'情報部「AI迷路」', count:0},
+  {name:'ゲーム研究会「デジタルクエスト」', count:0}
 ];
 
 let votes = JSON.parse(localStorage.getItem("votes")) || defaultVotes;
@@ -104,3 +107,5 @@ voteBtn.addEventListener("click", ()=>{
   voteSelect.disabled = true;
 });
 </script>
+</body>
+</html>
