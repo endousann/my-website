@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1年・ダンジョン</title>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
 <style>
 * { box-sizing: border-box; }
 
@@ -159,6 +159,7 @@ footer p {
 }
 </style>
 </head>
+
 <body>
 <header>
   <img src="images/ろごちゃん.png" alt="1年・ダンジョン ロゴ" class="logo">
@@ -175,12 +176,11 @@ footer p {
   </section>
 
   <section class="video-section">
-  <h2>📹 1年生紹介</h2>
-  <a href="https://youtube.com/shorts/QwjwcNWaS_A?si=TeHQgZ0dFDmJeauk" target="_blank" class="button">
-    1年生紹介動画を見る
-  </a>
-</section>
-
+    <h2>📹 1年生紹介</h2>
+    <a href="https://youtube.com/shorts/QwjwcNWaS_A?si=TeHQgZ0dFDmJeauk" target="_blank" class="button">
+      1年生紹介動画を見る
+    </a>
+  </section>
 
   <!-- 3️⃣ その他展示作品へのリンク -->
   <section class="portfolio-section">
@@ -221,21 +221,21 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ローカル投票制御
+// ✅ 投票済み制御（トップページ）
 const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
 const hasVoted = localStorage.getItem("hasVoted") === "true";
 
 if (hasVoted) {
-  voteLink.addEventListener("click", e => { 
-    e.preventDefault(); 
-    alert("すでに投票済みです。"); 
+  voteLink.addEventListener("click", e => {
+    e.preventDefault();
+    alert("⚠️ すでに投票済みです。\n投票ページには行けません。");
   });
   voteLink.style.cursor = "not-allowed";
   voteLink.style.backgroundColor = "#ccc";
   voteLink.style.color = "#666";
   voteLink.style.borderColor = "#aaa";
-  voteMessage.innerHTML = "あなたはすでに投票済みです。<br>投票ページには行けません。";
+  voteMessage.innerHTML = "✅ あなたはすでに投票済みです。<br>投票ページには行けません。";
 }
 
 // 🔒 投票リセットボタン（Shift + Rで表示）
@@ -248,7 +248,9 @@ document.addEventListener("keydown", e => {
 resetBtn.addEventListener("click", async () => {
   if (confirm("全員の投票データをリセットします。よろしいですか？")) {
     await db.ref("votes").remove();
+    localStorage.removeItem("hasVoted");
     alert("投票データをリセットしました。");
+    location.reload();
   }
 });
 </script>
