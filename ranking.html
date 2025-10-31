@@ -6,51 +6,89 @@
 <title>展示投票 - 文化祭ダンジョン</title>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family:'DotGothic16', monospace;
   margin:0; padding:0;
   background:#111 url("https://i.imgur.com/XiYwRZ2.png") repeat;
-  color:#f5e6c8;
   background-size:cover;
+  color:#f5e6c8;
 }
-header, footer {
+
+/* 🏰 ヘッダー */
+header {
   text-align:center;
-  padding:1rem;
+  padding:1.5rem 1rem;
   background:#000;
   color:#ffcc66;
+  box-shadow:0 2px 5px rgba(0,0,0,0.6);
 }
+
+header h1 {
+  margin:0;
+  font-size:1.8rem;
+}
+
+nav {
+  margin-top:0.5rem;
+}
+
 nav a {
   margin:0 0.5rem;
   color:#ffcc66;
   text-decoration:none;
+  font-size:1rem;
 }
+nav a:hover {
+  text-decoration:underline;
+}
+
+/* 📦 メイン */
 main {
   padding:1rem;
   max-width:600px;
   margin:0 auto;
 }
+
+/* 💡 投票ボックス */
 .box {
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.75);
   padding:1.5rem;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(255,200,80,0.3);
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(255,200,80,0.25);
   margin-bottom:2rem;
   text-align:center;
 }
+
+.box h2 {
+  font-size:1.4rem;
+  margin-bottom:1rem;
+  color:#ffcc66;
+}
+
 select, button {
   width:100%;
-  padding:12px;
-  margin:10px 0;
-  font-size:1rem;
-  border-radius:8px;
+  padding:14px;
+  margin:12px 0;
+  font-size:1.1rem;
+  border-radius:10px;
   border:1px solid #ffcc66;
   box-sizing:border-box;
   font-family:'DotGothic16', monospace;
+  outline:none;
 }
+
+/* 🧾 セレクトメニュー */
 select {
   background:#222;
   color:#ffcc66;
+  appearance:none;
 }
+
+/* 🟡 ボタン */
 button {
   background:#ffcc66;
   color:#222;
@@ -60,22 +98,55 @@ button {
 }
 button:hover {
   transform:translateY(-3px);
-  box-shadow:0 0 10px #ffcc66;
+  box-shadow:0 0 12px #ffcc66;
 }
+button:disabled {
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+/* 💬 メッセージ */
 #message {
   margin-top:1rem;
   color:#ffcc66;
-  font-size:1.1rem;
+  font-size:1rem;
+  line-height:1.4;
 }
+
+/* ⚙️ フッター */
 footer {
   background:#000;
   color:#ccc;
   font-size:0.9rem;
-  padding:1rem;
+  text-align:center;
+  padding:1.5rem 1rem;
+  margin-top:2rem;
+  border-top:1px solid #333;
 }
+
+/* 📱 スマホ最適化 */
 @media(max-width:768px){
-  header h1, .box h2 { font-size:1.2rem; }
-  select, button { font-size:1rem; }
+  header h1 {
+    font-size:1.4rem;
+  }
+  .box {
+    padding:1.2rem;
+  }
+  .box h2 {
+    font-size:1.2rem;
+  }
+  select, button {
+    font-size:1rem;
+    padding:12px;
+  }
+  nav a {
+    display:inline-block;
+    margin:0 0.3rem;
+    font-size:0.9rem;
+  }
+  #message {
+    font-size:0.95rem;
+  }
 }
 </style>
 </head>
@@ -83,8 +154,8 @@ footer {
 <header>
   <h1>🏆 展示投票ページ</h1>
   <nav>
-    <a href="index.html">ホーム</a>
-    <a href="portfolio.html">制作者紹介</a>
+    <a href="index.html">🏠 ホーム</a>
+    <a href="portfolio.html">🧑‍💻 制作者紹介</a>
   </nav>
 </header>
 
@@ -92,7 +163,7 @@ footer {
   <section class="box">
     <h2>好きな展示を選んで投票！</h2>
     <select id="vote-select">
-      <option value="">-- 選択してください --</option>
+      <option value="">-- 展示を選択 --</option>
       <option value="ダンジョンエスケープ">ダンジョンエスケープ</option>
       <option value="ONE BUTTON HERO">ONE BUTTON HERO</option>
       <option value="爆弾！どんぱっぱ">爆弾！どんぱっぱ</option>
@@ -116,14 +187,14 @@ const voteSelect = document.getElementById("vote-select");
 const message = document.getElementById("message");
 
 // 🧠 投票済みチェック
-if(localStorage.getItem("hasVoted") === "true"){
+if (localStorage.getItem("hasVoted") === "true") {
   voteBtn.disabled = true;
   voteSelect.disabled = true;
   message.textContent = "🗳️ あなたはすでに投票済みです！";
-  setTimeout(()=>{ window.location.href = "index.html"; }, 2500);
+  setTimeout(() => { window.location.href = "index.html"; }, 2500);
 }
 
-// 🎯 投票ボタン押下
+// 🎯 投票ボタン押下時
 voteBtn.addEventListener("click", async () => {
   const choice = voteSelect.value;
   if (!choice) {
@@ -141,15 +212,15 @@ voteBtn.addEventListener("click", async () => {
       body: `vote=${encodeURIComponent(choice)}`
     });
 
-    // ✅ 投票済みとして記録
+    // ✅ 投票済みとして保存
     localStorage.setItem("hasVoted", "true");
 
     message.textContent = `✅ 「${choice}」に投票しました！ありがとうございました！`;
     voteBtn.disabled = true;
     voteSelect.disabled = true;
 
-    // ⏳ 2秒後にトップページへ戻る
-    setTimeout(()=>{ window.location.href = "index.html"; }, 2000);
+    // ⏳ 自動でトップに戻す
+    setTimeout(() => { window.location.href = "index.html"; }, 2000);
   } catch (error) {
     message.textContent = "⚠️ エラーが発生しました。もう一度お試しください。";
   }
@@ -157,3 +228,4 @@ voteBtn.addEventListener("click", async () => {
 </script>
 </body>
 </html>
+
