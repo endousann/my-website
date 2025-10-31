@@ -135,6 +135,21 @@ footer p {
   line-height: 1.5;
 }
 
+/* 🔒 リセットボタン（非表示） */
+#reset-votes {
+  display: none;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+#reset-votes:hover {
+  background: #e91e63;
+}
+
 /* スマホ最適化 */
 @media(max-width:768px){
   h2 { font-size:1.3rem; }
@@ -146,7 +161,6 @@ footer p {
 </head>
 <body>
 <header>
-  <!-- 🎨 ロゴのみ表示 -->
   <img src="images/ろごちゃん.png" alt="1年・ダンジョン ロゴ" class="logo">
 </header>
 
@@ -156,19 +170,15 @@ footer p {
     <h2 style="font-size:1.8rem;">🎯 投票はこちら！ 🎯</h2>
     <a href="ranking.html" id="vote-link" class="button">投票する</a>
     <p id="vote-message"></p>
+    <!-- 管理用リセットボタン（Shift+Rで出る） -->
+    <button id="reset-votes">投票データをリセット</button>
   </section>
 
-<section class="video-section">
+  <section class="video-section">
   <h2>📹 1年生紹介</h2>
-<iframe width="315" height="576"
-  src="https://www.youtube.com/watch?v=QwjwcNWaS_A
-"
-  title="2025日専祭"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
-
+  <a href="https://youtube.com/shorts/QwjwcNWaS_A?si=TeHQgZ0dFDmJeauk" target="_blank" class="button">
+    1年生紹介動画を見る
+  </a>
 </section>
 
 
@@ -199,7 +209,19 @@ footer p {
   <p>製作者：1年遠藤福久・1年大友虎牙</p>
 </footer>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js"></script>
+
 <script>
+// Firebase設定
+const firebaseConfig = {
+  databaseURL: "https://danjonn-f9f66-default-rtdb.firebaseio.com/"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// ローカル投票制御
 const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
 const hasVoted = localStorage.getItem("hasVoted") === "true";
@@ -215,6 +237,20 @@ if (hasVoted) {
   voteLink.style.borderColor = "#aaa";
   voteMessage.innerHTML = "あなたはすでに投票済みです。<br>投票ページには行けません。";
 }
+
+// 🔒 投票リセットボタン（Shift + Rで表示）
+const resetBtn = document.getElementById("reset-votes");
+document.addEventListener("keydown", e => {
+  if (e.shiftKey && e.key === "R") {
+    resetBtn.style.display = "block";
+  }
+});
+resetBtn.addEventListener("click", async () => {
+  if (confirm("全員の投票データをリセットします。よろしいですか？")) {
+    await db.ref("votes").remove();
+    alert("投票データをリセットしました。");
+  }
+});
 </script>
 </body>
 </html>
