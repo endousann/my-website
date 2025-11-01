@@ -22,7 +22,7 @@ header {
   color:white;
 }
 
-/* 🌈 ロゴ画像を大きく中央に */
+/* 🌈 ロゴ画像を中央に */
 .logo {
   display:block;
   margin:0 auto;
@@ -31,6 +31,7 @@ header {
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.7));
 }
 
+/* 🧱 メイン */
 main {
   padding:1rem;
   max-width:600px;
@@ -40,7 +41,7 @@ main {
 
 h2 { margin:1rem 0; text-align:center; }
 
-/* 🌸 ボタン（カード風） */
+/* 🌸 ボタン */
 .button {
   display:inline-block;
   margin:0.8rem auto;
@@ -62,53 +63,28 @@ h2 { margin:1rem 0; text-align:center; }
   color:white;
 }
 
+/* ⛔ 投票済みボタン状態 */
+.button.disabled {
+  background:#ccc;
+  color:#666;
+  border-color:#aaa;
+  cursor:not-allowed;
+  box-shadow:none;
+  transform:none;
+}
+
+/* 🔔 メッセージ */
 #vote-message {
   color:red;
   font-weight:bold;
   margin-top:10px;
   text-align:center;
-}
-
-iframe {
-  width:100%;
-  max-width:100%;
-  height:340px;
-  border-radius:10px;
-  display:block;
+  line-height:1.5;
 }
 
 section { margin-bottom:2rem; }
 
-/* 🍩 チュロス告知カード */
-.churros-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  overflow: hidden;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.churros-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
-.churros-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.churros-card h3 {
-  margin: 0.8rem 0 0.4rem;
-  font-size: 1.4rem;
-  color: #e67e22;
-}
-.churros-card p {
-  padding: 0 1rem 1rem;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* ✅ フッター修正版 */
+/* ✅ フッター */
 footer {
   background: #222;
   color: white;
@@ -125,62 +101,66 @@ footer hr {
   margin: 10px auto 20px;
 }
 
-footer a {
-  color: #fff;
-  text-decoration: underline;
-}
+footer a { color: #fff; text-decoration: underline; }
+footer p { margin: 0.5rem 0; line-height: 1.5; }
 
-footer p {
-  margin: 0.5rem 0;
-  line-height: 1.5;
+/* 🔒 リセットボタン（管理者用） */
+#reset-votes {
+  display: none;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  cursor: pointer;
 }
+#reset-votes:hover { background: #e91e63; }
 
-/* スマホ最適化 */
+/* 📱 スマホ対応 */
 @media(max-width:768px){
   h2 { font-size:1.3rem; }
-  .button { width:100%; padding:12px; font-size:1rem; margin-bottom:8px; }
+  .button {
+    width:100%;
+    padding:12px;
+    font-size:1rem;
+    margin-bottom:8px;
+  }
   #vote-message { font-size:0.95rem; }
   .logo { max-width:250px; }
 }
 </style>
 </head>
+
 <body>
 <header>
-  <!-- 🎨 ロゴのみ表示 -->
   <img src="images/ろごちゃん.png" alt="1年・ダンジョン ロゴ" class="logo">
 </header>
 
 <main>
-  <!-- 1️⃣ 投票セクション -->
   <section class="vote-section">
     <h2 style="font-size:1.8rem;">🎯 投票はこちら！ 🎯</h2>
     <a href="ranking.html" id="vote-link" class="button">投票する</a>
     <p id="vote-message"></p>
+    <button id="reset-votes">投票データをリセット</button>
   </section>
 
-  <!-- 2️⃣ 作品紹介動画 -->
-  <section class="video-section">
-    <h2>📹 1年生紹介</h2>
-    <iframe src="https://youtube.com/shorts/QwjwcNWaS_A" title="1年生動画" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen></iframe>
-  </section>
-
-  <!-- 3️⃣ その他展示作品へのリンク -->
-  <section class="portfolio-section">
+<section class="video-section">
+  <h2>📹 1年生紹介</h2>
+  <a href="https://youtube.com/shorts/QwjwcNWaS_A?si=TeHQgZ0dFDmJeauk" target="_blank" class="button">
+    1年生紹介動画を見る
+  </a>
+</section>
     <h2>🎨 展示作品 🎨</h2>
     <a href="portfolio.html" class="button">展示一覧を見る</a>
   </section>
 
-  <!-- 🍩 4️⃣ チュロス告知カード -->
-  <section class="churros-section">
-    <div class="churros-card">
+  <section class="churros-section" style="text-align:center;">
+    <div class="churros-card" style="background:#fff; border-radius:12px; padding:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
       <a href="churros.html" style="text-decoration:none; color:inherit;">
-        <img src="images/churros.jpg" alt="スイーツの鉄板焼き!? 焼きチュロス＆スイートポテト">
-        <h3>🍩 スイーツの鉄板焼き!? 🍠</h3>
-        <p>焼きチュロス＆スイートポテトが登場！<br>
-        外はカリッと中はふんわり✨<br>
-        文化祭限定メニューをぜひ味わってください！</p>
+        <img src="images/churros.jpg" alt="チュロス" style="max-width:100%; border-radius:12px;">
+        <h3>🍩 チュロス販売中！</h3>
+        <p>文化祭限定メニューをぜひ味わってください！</p>
       </a>
     </div>
   </section>
@@ -190,25 +170,36 @@ footer p {
   <p>© 2025 1年サイト製作組</p>
   <hr>
   <p><a href="privacy.html">プライバシーポリシー</a></p>
-  <p>製作者：1年遠藤福久・1年大友虎牙</p>
+  <p>製作者：1年 遠藤福久・1年 大友虎牙</p>
 </footer>
 
 <script>
+// ✅ 投票済みチェック
 const voteLink = document.getElementById("vote-link");
 const voteMessage = document.getElementById("vote-message");
 const hasVoted = localStorage.getItem("hasVoted") === "true";
 
 if (hasVoted) {
-  voteLink.addEventListener("click", e => { 
-    e.preventDefault(); 
-    alert("すでに投票済みです。"); 
+  voteLink.addEventListener("click", e => {
+    e.preventDefault();
+    alert("⚠️ すでに投票済みです。投票ページには行けません。");
   });
-  voteLink.style.cursor = "not-allowed";
-  voteLink.style.backgroundColor = "#ccc";
-  voteLink.style.color = "#666";
-  voteLink.style.borderColor = "#aaa";
-  voteMessage.innerHTML = "あなたはすでに投票済みです。<br>投票ページには行けません。";
+  voteLink.classList.add("disabled");
+  voteMessage.innerHTML = "✅ あなたはすでに投票済みです。<br>投票ページには行けません。";
 }
+
+// 🔒 管理用リセットボタン
+const resetBtn = document.getElementById("reset-votes");
+document.addEventListener("keydown", e => {
+  if (e.shiftKey && e.key === "R") resetBtn.style.display = "block";
+});
+resetBtn.addEventListener("click", () => {
+  if (confirm("投票状態をリセットしますか？")) {
+    localStorage.removeItem("hasVoted");
+    alert("リセットしました。再投票が可能です。");
+    location.reload();
+  }
+});
 </script>
 </body>
 </html>
